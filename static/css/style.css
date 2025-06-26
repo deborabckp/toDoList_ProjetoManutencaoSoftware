@@ -1,0 +1,142 @@
+/* style.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #E6FAF9;
+  color: #064E40;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1, h2 {
+  color: #028C8C;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+a {
+  color: #40E0D0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #028C8C;
+  text-decoration: underline;
+}
+
+button, input[type="submit"] {
+  background-color: #40E0D0;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #28B0B0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #40E0D0;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #D4F2F1;
+}
+
+tbody tr:hover {
+  background-color: #B1E6E5;
+}
+
+tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #C3E6E5;
+}
+
+td a {
+  margin-right: 10px;
+  font-weight: 600;
+  color: #028C8C;
+}
+
+td a:hover {
+  color: #015E5E;
+}
+
+ul.messages {
+  list-style-type: none;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+ul.messages li {
+  background-color: #CFF7F6;
+  border: 1px solid #40E0D0;
+  color: #05514D;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form p {
+  margin-bottom: 15px;
+}
+
+form input[type="text"],
+form input[type="checkbox"],
+form select,
+form textarea {
+  padding: 8px;
+  border: 2px solid #7FDBDA;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #40E0D0;
+}
+
+a.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #40E0D0;
+}
+
+a.back-link:hover {
+  color: #028C8C;
+}
