@@ -23,6 +23,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 def home(request):
     tasks = Task.objects.filter(owner=request.user).order_by('-created_at')
     return render(request, 'core/home.html', {'tasks': tasks})
+    return redirect('task_create')
 
 @login_required
 def task_create(request):
@@ -39,7 +40,11 @@ def task_create(request):
 
 @login_required
 def task_update(request, pk):
-    task = get_object_or_404(Task, pk=pk, owner=request.user)
+    if request.user.is_superuser:
+        task = get_object_or_404(Task, pk=pk)
+    else:
+        task = get_object_or_404(Task, pk=pk, owner=request.user)
+
     if request.method == 'POST':
         form = TaskForm(request.POST, instance=task)
         if form.is_valid():
@@ -51,7 +56,11 @@ def task_update(request, pk):
 
 @login_required
 def task_delete(request, pk):
-    task = get_object_or_404(Task, pk=pk, owner=request.user)
+    if request.user.is_superuser:
+        task = get_object_or_404(Task, pk=pk)
+    else:
+        task = get_object_or_404(Task, pk=pk, owner=request.user)
+
     if request.method == 'POST':
         task.delete()
         return redirect('home')

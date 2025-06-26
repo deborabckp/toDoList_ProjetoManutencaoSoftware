@@ -2,6 +2,9 @@
 {% block content %}
 <h1>To Do List</h1>
 
+<p>Usuário: {{ user.username }}</p>
+<p>Qtd tarefas: {{ tasks.count }}</p>
+
 <a href="{% url 'task_create' %}">+ Nova tarefa</a>
 
 <table>
@@ -9,7 +12,8 @@
     <tr>
       <th>Título</th>
       <th>Concluída</th>
-      <th>Ações</th>
+      <th>Usuário</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,13 +21,14 @@
       <tr>
         <td>{{ task.title }}</td>
         <td>{{ task.done|yesno:"Sim,Não" }}</td>
+        <td>{{ task.owner.username }}</td>
         <td>
           <a href="{% url 'task_update' task.pk %}">Editar</a> |
           <a href="{% url 'task_delete' task.pk %}">Excluir</a>
         </td>
       </tr>
     {% empty %}
-      <tr><td colspan="3">Nenhuma tarefa ainda.</td></tr>
+      <tr><td colspan="4">Nenhuma tarefa ainda.</td></tr>
     {% endfor %}
   </tbody>
 </table>

@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>To Do List</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  {% block content %}{% endblock %}
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+  <body class="login-page">
+    <div class="login-form-container">
+      <h2>Entrar</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </body>
+{% endblock %}

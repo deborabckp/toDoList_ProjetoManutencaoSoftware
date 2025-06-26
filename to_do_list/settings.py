@@ -1,15 +1,19 @@
 import os
+from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '2xo1=ibc&1#@8j!*t!#=4o-4d3%b=)a!3pv+mx@k9gnrj_^^p'
 
-
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = reverse_lazy('task_create')
 LOGIN_URL = '/login/'
 
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.ngrok-free.app']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
 
 STATIC_URL = '/static/'
 
@@ -18,7 +22,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -29,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
 
     'core',
 ]
@@ -40,6 +44,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',  
     'django.contrib.messages.middleware.MessageMiddleware',  
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+
 ]
 
 ROOT_URLCONF = 'to_do_list.urls'  
@@ -96,10 +102,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
 }
+
+
 
 STATIC_URL = '/static/'
 

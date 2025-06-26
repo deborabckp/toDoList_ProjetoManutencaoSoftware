@@ -6,6 +6,5 @@ router = routers.DefaultRouter()
 router.register(r'tasks', TaskViewSet, basename='task')
 
 urlpatterns = [
-    # suas rotas existentes aqui...
     path('api/', include(router.urls)),
 ]

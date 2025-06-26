@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Task
 
 class TaskSerializer(serializers.ModelSerializer):
-    # Aqui você pode customizar qualquer campo se quiser (opcional)
     
     class Meta:
         model = Task
