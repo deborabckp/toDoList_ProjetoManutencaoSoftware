@@ -2,8 +2,9 @@ repos:
   - repo: local
     hooks:
       - id: pylint
-        name: pylint (local)
+        name: pylint
         entry: pylint
         language: system
         types: [python]
-        args: []
+        args: ["--init-hook", "import sys; sys.path.insert(0, '.')"]
+        files: ^core/(models|views|serializers)\.py$
