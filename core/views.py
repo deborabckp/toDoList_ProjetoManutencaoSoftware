@@ -5,10 +5,17 @@ import uuid
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+
 from rest_framework import viewsets, permissions
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from .models import Task
 from .serializers import TaskSerializer
 from .forms import TaskForm
+
 
 class TaskViewSet(viewsets.ModelViewSet):
     """
@@ -100,3 +107,24 @@ def task_delete(request, pk):
         task.delete()
         return redirect('home')
     return render(request, 'core/task_confirm_delete.html', {'task': task})
+
+class NotificationAPIView(APIView):
+    """View para enviar notificação por e-mail ao acessar a API."""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """Envia um e-mail para o usuário autenticado."""
+        user_email = request.user.email
+        if not user_email:
+            return Response({"error": "Usuário não possui email cadastrado."}, status=400)
+
+        send_mail(
+            'Notificação de acesso à API',
+            'Olá! Você acessou a API com sucesso.',
+            'debora.costa22396@alunos.ufersa.edu.br',
+            [user_email],
+            fail_silently=False,
+        )
+
+        return Response({"message": f"E-mail enviado com sucesso para {user_email}"})
