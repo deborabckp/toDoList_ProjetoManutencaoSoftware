@@ -5,7 +5,13 @@ from core.models import Task
 
 # pylint: disable=too-few-public-methods
 class TaskSerializer(serializers.ModelSerializer):
-    """Serializer para o model Task."""
+    """Serializer para o model Task.
+
+    Princípio I (Segregação de Interface - ISP):
+    Este serializer só expõe os campos necessários (id, title, done, created_at),
+    evitando depender de métodos ou atributos que não são usados.
+    
+    """
 
     class Meta:
         """Define os campos e configurações do serializer."""

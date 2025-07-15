@@ -23,6 +23,11 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     Fornece CRUD completo para o model Task.
     Apenas usuários autenticados podem acessar.
+
+    Princípio O (Aberto para extensão, fechado para modificação - OCP):
+    Esta ViewSet pode ser estendida com novos métodos sem alterar a lógica existente,
+    aproveitando a estrutura modular do Django REST Framework.
+    
     """
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]

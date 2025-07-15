@@ -3,21 +3,15 @@ from core.models import Task
 
 class TitleValidationMixin:
     """
-    Mixin para validar o título de uma tarefa.
-
-    Método:
-        validate_title(title: str, instance: Task | None = None) -> str
-
-    Parâmetros:
-        title: título a ser validado.
-        instance: instância da tarefa em edição (opcional). Se fornecida,
-                  será ignorada na verificação de duplicidade para permitir
-                  atualização sem erro.
-
-    Validações:
-        - Título não pode ser vazio ou só espaços.
-        - Título deve ser único, ignorando o objeto em edição e diferenças
-          de maiúsculas/minúsculas.
+    Princípio S (Responsabilidade Única - SRP):
+    Esta classe tem a responsabilidade única de validar títulos,
+    separando a lógica de validação da lógica de formulário.
+    
+    Princípio D (Inversão de Dependência - DIP):
+    Ainda há acoplamento direto com o modelo Task.
+    Para aplicar totalmente o DIP, poderíamos injetar a dependência do modelo
+    via argumento ou interface, facilitando testes e manutenção.
+    
     """
     def validate_title(self, title, instance=None):
         if not title or not title.strip():
