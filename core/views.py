@@ -16,7 +16,7 @@ from .models import Task
 from .serializers import TaskSerializer
 from .forms import TaskForm
 
-
+# pylint: disable=invalid-name
 class TaskViewSet(viewsets.ModelViewSet):
     """
     ViewSet para API REST das tarefas.
@@ -27,7 +27,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     Princípio O (Aberto para extensão, fechado para modificação - OCP):
     Esta ViewSet pode ser estendida com novos métodos sem alterar a lógica existente,
     aproveitando a estrutura modular do Django REST Framework.
-    
     """
     serializer_class = TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -77,7 +76,6 @@ def task_create(request):
 def task_update(request, pk):
     """
     View para edição de tarefa existente.
-
     Permite edição apenas para o dono da tarefa ou superusuário.
     Exibe formulário com dados atuais e salva alterações.
     """
@@ -118,6 +116,7 @@ class NotificationAPIView(APIView):
 
     permission_classes = [IsAuthenticated]
 
+# pylint: disable=no-self-use
     def get(self, request):
         """Envia um e-mail para o usuário autenticado."""
         user_email = request.user.email
