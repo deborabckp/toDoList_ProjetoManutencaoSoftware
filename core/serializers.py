@@ -11,8 +11,8 @@ class TaskSerializer(serializers.ModelSerializer):
     atributos do modelo que não são tão relevantes para esta camada
     """
 
-    class Meta:
-        """Define os campos e configurações do serializer."""
-        model = Task
-        fields = ['id', 'title', 'done', 'created_at']
-        read_only_fields = ['id', 'created_at']
+class Meta:
+    """Define os campos e configurações do serializer."""
+    model = Task
+    fields = ['id', 'title', 'done', 'created_at']
+    read_only_fields = ['id', 'created_at']
