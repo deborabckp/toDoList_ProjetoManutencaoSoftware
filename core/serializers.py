@@ -7,7 +7,7 @@ class TaskSerializer(serializers.ModelSerializer):
     """
     Princípio I (Segregação de Interface - ISP):
     Este serializer define uma interface enxuta para o modelo Task,
-    mostrando apenas os campos necessários para a API e ocultando outros 
+    mostrando apenas os campos necessários para a API e ocultando outros
     atributos do modelo que não são tão relevantes para esta camada
     """
 
